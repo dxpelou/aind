@@ -1,10 +1,4 @@
-"""This file contains a collection of player classes for comparison with your
-own agent and example heuristic functions.
 
-    ************************************************************************
-    ***********  YOU DO NOT NEED TO MODIFY ANYTHING IN THIS FILE  **********
-    ************************************************************************
-"""
 
 from random import randint
 

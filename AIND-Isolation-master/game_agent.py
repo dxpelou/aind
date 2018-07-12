@@ -14,7 +14,6 @@ def custom_score(game, player):
     """Calculate the heuristic value of a game state from the point of view
     of the given player.
 
-    This should be the best heuristic function for your project submission.
 
     Note: this function should be called from within a Player instance as
     `self.score()` -- you should not need to call this function directly.
@@ -131,7 +130,6 @@ class IsolationPlayer:
     """Base class for minimax and alphabeta agents -- this class is never
     constructed or tested directly.
 
-    ********************  DO NOT MODIFY THIS CLASS  ********************
 
     Parameters
     ----------
@@ -166,7 +164,6 @@ class MinimaxPlayer(IsolationPlayer):
         """Search for the best move from the available legal moves and return a
         result before the time limit expires.
 
-        **************  YOU DO NOT NEED TO MODIFY THIS FUNCTION  *************
 
         For fixed-depth search, this function simply wraps the call to the
         minimax method, but this method provides a common interface for all
@@ -211,13 +208,6 @@ class MinimaxPlayer(IsolationPlayer):
         """Implement depth-limited minimax search algorithm as described in
         the lectures.
 
-        This should be a modified version of MINIMAX-DECISION in the AIMA text.
-        https://github.com/aimacode/aima-pseudocode/blob/master/md/Minimax-Decision.md
-
-        **********************************************************************
-            You MAY add additional methods to this class, or define helper
-                 functions to implement the required functionality.
-        **********************************************************************
 
         Parameters
         ----------
@@ -235,16 +225,7 @@ class MinimaxPlayer(IsolationPlayer):
             The board coordinates of the best move found in the current search;
             (-1, -1) if there are no legal moves
 
-        Notes
-        -----
-            (1) You MUST use the `self.score()` method for board evaluation
-                to pass the project tests; you cannot call any other evaluation
-                function directly.
 
-            (2) If you use any helper functions (e.g., as shown in the AIMA
-                pseudocode) then you must copy the timer check into the top of
-                each helper function or else your agent will timeout during
-                testing.
         """
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
@@ -308,8 +289,6 @@ class AlphaBetaPlayer(IsolationPlayer):
         """Search for the best move from the available legal moves and return a
         result before the time limit expires.
 
-        Modify the get_move() method from the MinimaxPlayer class to implement
-        iterative deepening search instead of fixed-depth search.
 
         **********************************************************************
         NOTE: If time_left() < 0 when this function returns, the agent will
@@ -347,16 +326,9 @@ class AlphaBetaPlayer(IsolationPlayer):
         return best_move
 
     def alphabeta(self, game, depth, alpha = float("-inf"), beta = float("inf")):
-        """Implement depth-limited minimax search with alpha-beta pruning as
-        described in the lectures.
+        """Implement depth-limited minimax search with alpha-beta pruning
 
-        This should be a modified version of ALPHA-BETA-SEARCH in the AIMA text
-        https://github.com/aimacode/aima-pseudocode/blob/master/md/Alpha-Beta-Search.md
 
-        **********************************************************************
-            You MAY add additional methods to this class, or define helper
-                 functions to implement the required functionality.
-        **********************************************************************
 
         Parameters
         ----------
@@ -445,8 +417,10 @@ class AlphaBetaPlayer(IsolationPlayer):
         if depth == 0:
             return None, self.score(game, self)
 
+        #loop through possible moves
         for move in game.get_legal_moves():
             forecast_game = game.forecast_move(move)
+            #recursively find score for this node
             v = self._alphabeta(forecast_game, depth - 1, alpha, beta)[1]
 
             if game.active_player == self:
